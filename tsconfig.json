@@ -1,0 +1,36 @@
+{
+  // https://github.com/tsconfig/bases/blob/main/bases/node22.json
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "lib": [
+      "es2024",
+      "ESNext.Array",
+      "ESNext.Collection",
+      "ESNext.Iterator"
+    ],
+    "module": "nodenext",
+    "target": "es2022",
+    "sourceMap": true,
+    "isolatedModules": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": false,
+    "declarationMap": false,
+    // "moduleResolution": "bundler",
+    // "allowSyntheticDefaultImports": true,
+    // "noUncheckedIndexedAccess": true,
+    // "exactOptionalPropertyTypes": true,
+    // "verbatimModuleSyntax": true,
+    // "noUncheckedSideEffectImports": true,
+    // "moduleDetection": "force",
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
