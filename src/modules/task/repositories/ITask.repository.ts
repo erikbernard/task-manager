@@ -9,5 +9,5 @@ export interface ITaskRepository {
   findAll(
     userId: string,
     filters: ListTasksQueryDTO
-  ): Promise<{ tasks: Task[]; total: number }>;
+  ): Promise<{ tasks: Task[]; total: number; totalPages: number }>;
 }
