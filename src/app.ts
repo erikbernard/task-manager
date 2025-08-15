@@ -1,11 +1,16 @@
 import express from "express";
+import { Database } from "sqlite";
+import { errorHandler } from "./shared/middlewares/error.handler";
+import { configureUserRoutes } from "./modules/users/routes/User.routes";
 
-const app = express();
-app.use(express.json());
+export function createApp(db: Database) {
+  const app = express();
+  app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({ message: "Rapadura e doce mas não e mole" });
-});
+  const userRoutes = configureUserRoutes(db);
+  app.use("/api", userRoutes);
 
+  app.use(errorHandler);
 
-export default app;
+  return app;
+}
