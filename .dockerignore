@@ -1,0 +1,20 @@
+# Arquivos e pastas do Node
+node_modules
+npm-debug.log
+
+# Arquivos de configuração do ambiente (nunca devem ir para a imagem)
+.env
+
+# Arquivos do Docker
+Dockerfile
+docker-compose.yml
+
+# Metadados do Git
+.git
+.gitignore
+
+# Arquivos de IDE e sistema
+.idea
+*.suo
+*.user
+.DS_Store
