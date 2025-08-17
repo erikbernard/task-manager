@@ -1,7 +1,14 @@
-import app from "./app";
+import { env } from "./config/env";
+import { initializeDatabase } from "./config/database";
+import { createApp } from "./app";
 
-const PORT = process.env.PORT || 3000;
+async function startServer() {
+  const db = await initializeDatabase();
+  const app = createApp(db);
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+  app.listen(env.PORT, () => {
+    console.log(`vai goku	(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ ${env.PORT}`);
+  });
+}
+
+startServer();

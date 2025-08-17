@@ -1,11 +1,25 @@
 import express from "express";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from '../swagger.json'; 
+import cors from "cors"; 
+import { Database } from "sqlite";
+import { errorHandler } from "./shared/middlewares/error.handler";
+import { configureUserRoutes } from "./modules/users/routes/User.routes";
+import { configureTaskRoutes } from "./modules/task/routes/Task.routes";
 
-const app = express();
-app.use(express.json());
+export function createApp(db: Database) {
+  const app = express();
+  app.use(cors()); 
+  app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({ message: "Rapadura e doce mas não e mole" });
-});
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  const userRoutes = configureUserRoutes(db);
+  const taskRoutes = configureTaskRoutes(db);
 
+  app.use("/api", userRoutes);
+  app.use("/api", taskRoutes);
 
-export default app;
+  app.use(errorHandler);
+
+  return app;
+}
